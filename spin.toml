@@ -1,0 +1,19 @@
+spin_manifest_version = 2
+
+[application]
+authors = ["macolso <mackenzie.olson@fermyon.com>"]
+description = "SImple API component that returns random trivia questions"
+name = "trivia-generator"
+version = "0.1.0"
+
+[[trigger.http]]
+route = "/api"
+component = "trivia-generator"
+
+[component.trivia-generator]
+source = "dist/trivia-generator.wasm"
+exclude_files = ["**/node_modules"]
+allowed_outbound_hosts = ["https://opentdb.com"]
+[component.trivia-generator.build]
+command = ["npm install", "npm run build"]
+watch = ["src/**/*.js"]
